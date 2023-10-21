@@ -4,7 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
+import Services.ContratoServico;
+import Services.PicPay;
 import entities.Contrato;
+import entities.Parcela;
 
 public class SistemaPrincipal {
 
@@ -23,6 +26,16 @@ public class SistemaPrincipal {
 
     Contrato contrato = new Contrato(numero, data, valor);
 
+    System.out.print("Informe a quantidade de parcelas: ");
+    int parcelas = sc.nextInt();
+
+    ContratoServico contratoServico = new ContratoServico(new PicPay());
+
+    contratoServico.processarContrato(contrato, parcelas);
+
+    for (Parcela parcela : contrato.getParcelas()) {
+      System.out.println(parcela);
+    }
     sc.close();
   }
 

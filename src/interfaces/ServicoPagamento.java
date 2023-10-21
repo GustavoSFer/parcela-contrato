@@ -1,7 +1,7 @@
 package interfaces;
 
 public interface ServicoPagamento {
-  double jutosMensal(double juros);
+  double jutosMensal(double juros, int meses);
 
-  double taxa(double taxa, int meses);
+  double taxa(double taxa);
 }

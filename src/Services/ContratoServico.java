@@ -16,9 +16,12 @@ public class ContratoServico {
   public void processarContrato(Contrato contrato, int meses) {
     double valorMes = contrato.getValor() / meses;
     for (int i = 1; i <= meses; i++) {
-      double valorParcela = Math.pow(valorMes, i);
       LocalDate data = contrato.getData().plusMonths(i);
-      contrato.getParcelas().add(new Parcela(data, valorParcela));
+      double juros = servicoPagamento.jutosMensal(valorMes, i);
+      double taxa = servicoPagamento.taxa(valorMes + juros);
+      double valorTotalParcela = valorMes + juros + taxa;
+
+      contrato.getParcelas().add(new Parcela(data, valorTotalParcela));
     }
   }
 }
