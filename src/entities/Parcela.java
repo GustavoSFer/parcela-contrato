@@ -1,8 +1,10 @@
 package entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Parcela {
+  private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
   private LocalDate data;
   private double valor;
 
@@ -27,6 +29,9 @@ public class Parcela {
     this.valor = valor;
   }
 
-
+  @Override
+  public String toString() {
+    return data.format(dtf) + " - " + String.format("%.2f", valor);
+  }
 
 }
